@@ -22,15 +22,15 @@
     <Button
         android:id="@+id/buttonPlus"
         android:layout_width="49dp"
-        android:layout_height="43dp"
-        android:layout_marginBottom="80dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="225dp"
         android:layout_marginEnd="16dp"
         android:onClick="onButtonClick"
         android:text="+"
-        app:layout_constraintBottom_toTopOf="@+id/buttonMinus"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/button6"
-        app:layout_constraintTop_toBottomOf="@+id/Exit" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonC" />
 
     <Button
         android:id="@+id/buttonMinus"
@@ -107,10 +107,13 @@
         android:id="@+id/button7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="176dp"
+        android:layout_marginStart="31dp"
         android:onClick="onButtonClick7"
         android:text="7"
         app:layout_constraintBaseline_toBaselineOf="@+id/button8"
-        app:layout_constraintStart_toStartOf="@+id/button4" />
+        app:layout_constraintEnd_toStartOf="@+id/buttonC"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/button4"
@@ -204,5 +207,17 @@
         app:layout_constraintBaseline_toBaselineOf="@+id/buttonDot"
         app:layout_constraintEnd_toStartOf="@+id/buttonMinus"
         app:layout_constraintStart_toEndOf="@+id/buttonDot" />
+
+    <Button
+        android:id="@+id/buttonC"
+        android:layout_width="49dp"
+        android:layout_height="43dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="200dp"
+        android:text="C"
+        app:layout_constraintBottom_toTopOf="@+id/buttonPlus"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/button7"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

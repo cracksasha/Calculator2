@@ -16,11 +16,11 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
 
-    private Button  btn_Exit, button0, button1, button2, button3, button4, button5, button6, button7, button8, button9, buttonPlus, buttonMinus, buttonMul, buttonDiv, buttonRavno;
+    private Button  btn_Exit, button0, button1, button2, button3, button4, button5, button6, button7, button8, button9, buttonPlus, buttonMinus, buttonMul, buttonDiv, buttonRavno, buttonC;
     public TextView resSum;
 
     String operation = "";
-    int savedValue = 0;
+    double savedValue = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         buttonMinus = (Button)findViewById(R.id.buttonMinus);
         buttonMul = (Button)findViewById(R.id.buttonMul);
         buttonRavno = (Button)findViewById(R.id.buttonRavno);
-
+        buttonC = (Button)findViewById(R.id.buttonC);
 
 
 
@@ -161,7 +161,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 resSum = (TextView)findViewById(R.id.Output);
 
-                savedValue = Integer.parseInt(resSum.getText().toString());
+                savedValue = Double.parseDouble(resSum.getText().toString());
                 resSum.setText("");
                 operation = "+";
             }
@@ -172,7 +172,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 resSum = (TextView)findViewById(R.id.Output);
 
-                savedValue = Integer.parseInt(resSum.getText().toString());
+                savedValue = Double.parseDouble(resSum.getText().toString());
                 resSum.setText("");
                 operation = "-";
             }
@@ -183,9 +183,10 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 resSum = (TextView)findViewById(R.id.Output);
 
-                savedValue = Integer.parseInt(resSum.getText().toString());
-                resSum.setText("");
+                savedValue = Double.parseDouble(resSum.getText().toString());
                 operation = "*";
+                resSum.setText(Double.toString(savedValue) + operation );
+
             }
         });
 
@@ -194,9 +195,19 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 resSum = (TextView)findViewById(R.id.Output);
 
-                savedValue = Integer.parseInt(resSum.getText().toString());
+                savedValue = Double.parseDouble(resSum.getText().toString());
                 resSum.setText("");
                 operation = "/";
+            }
+        });
+
+        buttonC.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                resSum = (TextView)findViewById(R.id.Output);
+                savedValue = 0;
+                resSum.setText("");
+                operation ="";
             }
         });
 
@@ -204,7 +215,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 resSum = (TextView)findViewById(R.id.Output);
-                int secondValue = Integer.parseInt(resSum.getText().toString());
+                double secondValue = Double.parseDouble(resSum.getText().toString());
 
                 if (operation == "+"){
                     resSum.setText((savedValue+secondValue)+"");
@@ -216,10 +227,13 @@ public class MainActivity extends AppCompatActivity {
 
                 }
                 if (operation == "*"){
+                    resSum.setText("");
                     resSum.setText((savedValue*secondValue)+"");
 
                 }
-                if (operation == "/"){
+                if (operation == "/" && secondValue == 0) {
+                    resSum.setText("Error");
+                }else if (operation == "/" && secondValue != 0){
                     resSum.setText((savedValue/secondValue)+"");
 
                 }
